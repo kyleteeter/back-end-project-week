@@ -1,6 +1,6 @@
 const express = require('express');
 
-const games = require('../helper/helper.js');
+const notes = require('../helper/helper.js');
 
 const server = express();
 
@@ -27,4 +27,5 @@ server.post('/notes', async (req, res) => {
     }
 
 })
+
 module.exports = server;
