@@ -1,10 +1,9 @@
 const db = require('../data/dbConfig.js');
 
-// module.exports = {
-//     insert,
-//     update,
-//     remove,
-//     getAll,
-//     findById,
-// };
+module.exports = {
+    getAll,
+};
 
+function getAll() {
+    return db('notes');
+  }
