@@ -19,8 +19,8 @@ server.get('/notes', async (req, res) => {
 server.post('/notes', async (req, res) => {
     const noteData = req.body;
    console.log(noteData)
-    if (gameData.title && noteData.genre) {
-      const ids = await games.insert(noteData);
+    if (noteData.title && noteData.genre) {
+      const ids = await notes.insert(noteData);
       res.status(201).json(ids);
     } else {
       res.status(422).json({error: 'missing important information'})
