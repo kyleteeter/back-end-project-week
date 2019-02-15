@@ -17,6 +17,10 @@ server.get('/notes', async (req, res) => {
   res.status(200).json(notes);
 });
 
+server.get('/products', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+
 server.post('/notes', async (req, res) => {
     const noteData = req.body;
    console.log(noteData)
