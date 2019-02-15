@@ -17,9 +17,15 @@ server.get('/notes', async (req, res) => {
   res.status(200).json(notes);
 });
 
-server.get('/products', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
+server.get('/notes/:id', (req, res) => {
+  const {id} = req.params;
+  db.getById(id)
+      .then(note => {
+          res.json(note) 
+      })
+      .catch(err => res.status(500).json({err: `No note with id of ${id} exists.`}));
 })
+
 
 server.post('/notes', async (req, res) => {
     const noteData = req.body;
@@ -30,7 +36,8 @@ server.post('/notes', async (req, res) => {
     } else {
       res.status(422).json({error: 'missing important information'})
     }
-
 })
+
+
 
 module.exports = server;
