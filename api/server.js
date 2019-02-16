@@ -62,4 +62,16 @@ server.put('/notes/:id', async (req, res) => {
 });
 
 
+server.delete('/notes/:id', (req, res) => {
+    const {id} = req.params;
+    db.deleteNote(id)
+    .then(rowCount => {
+        const success = `Successfully deleted note with id ${id}`
+        res.status(201).json(success)
+    }).catch(err => {
+        res.status(500).json({err: 'Failed to delete note'})
+    })
+});
+
+
 module.exports = server;
