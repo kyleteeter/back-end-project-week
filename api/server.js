@@ -38,6 +38,28 @@ server.post('/notes', async (req, res) => {
     }
 })
 
+server.put('/notes/:id', async (req, res) => {
+  const {id} = req.params;
+  const note = req.body;
+  console.log(note.title);
+  if (note.title && note.text) {
+      try {
+          const updatedId = await db.editNote(id, note);
+          console.log(updatedId);
+          res.status(200).json(updatedId);
+      }
+      catch(error) {
+          console.log(error);
+          res.status(404).json({errorMessage: `No note found with id: ${id}.`});
+      }
+  }
+  else {
+      res.status(422).json(
+          {errorMessage: 'This endpoint expects both a title and content in the note object.', 
+          received: note }
+      );
+  }
+});
 
 
 module.exports = server;
