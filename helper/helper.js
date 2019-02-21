@@ -22,7 +22,7 @@ function getById(id) {
 
 function editNote(id, note) {
   console.log(`id: ${id}`)
-  return db('notes').where('id', id).update({title: note.title, content: note.content})
+  return db('notes').where('id', id).update({title: note.title, text: note.text})
 }
 
 function deleteNote(id) {

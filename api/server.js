@@ -45,7 +45,6 @@ server.put('/notes/:id', async (req, res) => {
   if (note.title && note.text) {
       try {
           const updatedId = await db.editNote(id, note);
-          console.log(updatedId);
           res.status(200).json(updatedId);
       }
       catch(error) {
